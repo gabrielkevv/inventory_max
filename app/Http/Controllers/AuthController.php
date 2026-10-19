@@ -4,14 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\View\View;
 
 class AuthController extends Controller
 {
-    public function show(): View
+    public function show(): Response
     {
-        return view('auth.login');
+        // no-store mencegah browser memulihkan form login lama dari
+        // bfcache (tombol back) dengan token yang sudah tidak cocok → 419.
+        return response()->view('auth.login')
+            ->header('Cache-Control', 'no-store, no-cache, must-revalidate');
     }
 
     public function login(Request $request): RedirectResponse

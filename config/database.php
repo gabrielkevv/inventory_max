@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Str;
 
+// Jalur sertifikat CA untuk koneksi TLS (mis. TiDB di Vercel).
+// Nilai relatif diresolve dari root proyek; nilai absolut dipakai apa adanya.
+$sslCaPath = ($ca = env('MYSQL_ATTR_SSL_CA')) && !Str::startsWith($ca, '/') ? base_path($ca) : $ca;
+
 return [
 
     /*
@@ -58,7 +62,7 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                (defined('Pdo\\Mysql::ATTR_SSL_CA') ? Pdo\Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => $sslCaPath,
             ]) : [],
         ],
 
@@ -78,7 +82,7 @@ return [
             'strict' => true,
             'engine' => null,
             'options' => extension_loaded('pdo_mysql') ? array_filter([
-                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+                (defined('Pdo\\Mysql::ATTR_SSL_CA') ? Pdo\Mysql::ATTR_SSL_CA : PDO::MYSQL_ATTR_SSL_CA) => $sslCaPath,
             ]) : [],
         ],
 

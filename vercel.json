@@ -1,0 +1,32 @@
+{
+    "version": 2,
+    "builds": [
+        { "src": "/api/index.php", "use": "vercel-php@0.9.0", "config": { "memory": 1024, "maxDuration": 30 } },
+        { "src": "/public/**", "use": "@vercel/static" }
+    ],
+    "routes": [
+        { "src": "/build/(.*)", "dest": "/public/build/$1" },
+        { "src": "/favicon.ico", "dest": "/public/favicon.ico" },
+        { "src": "/logo.jpeg", "dest": "/public/logo.jpeg" },
+        { "src": "/robots.txt", "dest": "/public/robots.txt" },
+        { "src": "/(.*)", "dest": "/api/index.php" }
+    ],
+    "env": {
+        "APP_NAME": "TanggapEquip",
+        "APP_ENV": "production",
+        "DB_CONNECTION": "mysql",
+        "APP_DEBUG": "false",
+        "APP_TIMEZONE": "Asia/Jakarta",
+        "APP_LOCALE": "id",
+        "APP_FALLBACK_LOCALE": "en",
+        "LOG_CHANNEL": "stderr",
+        "LOG_LEVEL": "error",
+        "VIEW_COMPILED_PATH": "/tmp/views",
+        "SESSION_DRIVER": "database",
+        "CACHE_STORE": "database",
+        "QUEUE_CONNECTION": "database",
+        "FILESYSTEM_DISK": "local",
+        "SESSION_LIFETIME": "120",
+        "BCRYPT_ROUNDS": "12"
+    }
+}
