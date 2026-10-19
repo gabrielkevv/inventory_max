@@ -95,5 +95,3 @@ Setiap pengajuan memuat satu jenis barang dan jumlah unit. Penolakan memerlukan 
 - `database/seeders/DatabaseSeeder.php`: izin dan role bawaan, serta akun admin awal dari `.env`.
 - `resources/views/`: Blade untuk dashboard, master lokasi, dan alur transaksi.
 - `resources/css/app.css`: tema operasi gudang di atas AdminLTE 4.
-
-Desain mengacu pada [Hallmark](https://github.com/Nutlope/hallmark) untuk hierarki yang jelas, konten jujur, dan tampilan responsif tanpa dekorasi yang tidak membantu pekerjaan.
